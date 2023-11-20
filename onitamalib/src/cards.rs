@@ -1,4 +1,4 @@
-use crate::models::{Card, CardDirection, CardSet, Point};
+use crate::models::{Card, CardDirection, CardSet, CardType, Point};
 
 impl Card {
     pub fn moves(&self) -> Vec<Point> {
@@ -216,6 +216,37 @@ impl Card {
                 Point { x: 0, y: 2 },
                 Point { x: 1, y: 0 },
             ],
+            // Dual Cards 
+            Card::Okija => vec![
+                //Student
+                Point { x: 0, y: -1 }, 
+                //Master
+                Point { x: -2, y: -2 },
+                Point { x: 2, y: -2}, 
+            ],
+            Card::Mejika => vec![      
+                //Student
+                Point { x: -2, y: -1 }, 
+                Point { x: -2, y: -1 },
+                //Master
+                Point { x: 0, y: -1},                
+            ],
+            Card::Kumo => vec![
+                //Student
+                Point { x: -1, y: -1 }, 
+                Point { x: 1, y: -1 },
+                //Master
+                Point { x: -2, y: 0 },
+                Point { x: 2, y: 0 },                 
+            ],
+            Card::Sasori => vec![
+                //Student
+                Point { x: -2, y: 0 }, 
+                Point { x: 2, y: 0 },
+                //Master
+                Point { x: -1, y: -2},
+                Point { x: 1, y: -2}, 
+            ],
         }
     }
     pub fn direction(&self) -> CardDirection {
@@ -263,6 +294,63 @@ impl Card {
             Card::Centipede => CardDirection::Left,
             Card::Cat => CardDirection::Right,
             Card::Serow => CardDirection::Left,
+            // Dual Cards
+            Card::Okija => CardDirection::Balanced,
+            Card::Mejika => CardDirection::Balanced,
+            Card::Kumo => CardDirection::Balanced,
+            Card::Sasori => CardDirection::Balanced,
+        }
+    }
+    pub fn movetype(&self) -> CardType {
+        match self {
+            // Base Game
+            Card::Tiger => CardType::Normal,
+            Card::Dragon => CardType::Normal,
+            Card::Frog => CardType::Normal,
+            Card::Rabbit => CardType::Normal,
+            Card::Crab => CardType::Normal,
+            Card::Elephant => CardType::Normal,
+            Card::Goose => CardType::Normal,
+            Card::Rooster => CardType::Normal,
+            Card::Monkey => CardType::Normal,
+            Card::Mantis => CardType::Normal,
+            Card::Horse => CardType::Normal,
+            Card::Ox => CardType::Normal,
+            Card::Crane => CardType::Normal,
+            Card::Boar => CardType::Normal,
+            Card::Eel => CardType::Normal,
+            Card::Cobra => CardType::Normal,
+            // Sensei's Path
+            Card::Fox => CardType::Normal,
+            Card::Dog => CardType::Normal,
+            Card::Giraffe => CardType::Normal,
+            Card::Panda => CardType::Normal,
+            Card::Bear => CardType::Normal,
+            Card::Kirin => CardType::Normal,
+            Card::SeaSnake => CardType::Normal,
+            Card::Viper => CardType::Normal,
+            Card::Phoenix => CardType::Normal,
+            Card::Mouse => CardType::Normal,
+            Card::Rat => CardType::Normal,
+            Card::Turtle => CardType::Normal,
+            Card::Tanuki => CardType::Normal,
+            Card::Iguana => CardType::Normal,
+            Card::Sable => CardType::Normal,
+            Card::Otter => CardType::Normal,
+            // Promotional Cards
+            Card::Goat => CardType::Normal,
+            Card::Sheep => CardType::Normal,
+            Card::Lobster => CardType::Normal,
+            Card::Steer => CardType::Normal,
+            Card::Hornet => CardType::Normal,
+            Card::Centipede => CardType::Normal,
+            Card::Cat => CardType::Normal,
+            Card::Serow => CardType::Normal,
+            // Dual Cards
+            Card::Okija => CardType::DualMove,
+            Card::Mejika => CardType::DualMove,
+            Card::Kumo => CardType::DualMove,
+            Card::Sasori => CardType::DualMove,
         }
     }
     pub fn index(&self) -> u32 {
@@ -309,6 +397,11 @@ impl Card {
             Card::Centipede => 37,
             Card::Cat => 38,
             Card::Serow => 39,
+            // Dual Cards
+            Card::Okija => 40,
+            Card::Mejika => 41,
+            Card::Kumo => 42,
+            Card::Sasori => 43,
         }
     }
 }
@@ -358,6 +451,10 @@ impl From<u32> for Card {
             37 => Card::Centipede,
             38 => Card::Cat,
             39 => Card::Serow,
+            40 => Card::Okija,
+            41 => Card::Mejika,
+            42 => Card::Kumo,
+            43 => Card::Sasori,
             _ => panic!("invalid index for card"),
         }
     }
@@ -412,7 +509,12 @@ impl CardSet {
                 Card::Cat, 
                 Card::Serow,
             ],
-            
+            CardSet::DualCards => vec![
+                Card::Okija,
+                Card::Mejika,
+                Card::Kumo,
+                Card::Sasori,
+            ]
         }
     }
 }

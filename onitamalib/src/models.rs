@@ -86,6 +86,13 @@ pub enum CardDirection {
     Balanced,
 }
 
+#[derive(Copy, Clone, Serialize, Deserialize, Debug)]
+pub enum CardType {
+    Normal,
+    DualMove,
+    WindSpiritMove,
+}
+
 #[derive(Eq, PartialEq, Copy, Clone, IntoEnumIterator, Debug, Serialize, Deserialize)]
 pub enum Card {
     // Base game
@@ -131,6 +138,11 @@ pub enum Card {
     Centipede,
     Cat,
     Serow,
+    // Dual Cards
+    Okija,
+    Mejika,
+    Kumo,
+    Sasori,
 }
 
 impl fmt::Display for Card {
@@ -144,6 +156,7 @@ pub enum CardSet {
     Base,
     SenseiPath,
     PromotionalPack,
+    DualCards,
 }
 
 impl ToString for CardSet {
@@ -152,6 +165,7 @@ impl ToString for CardSet {
             CardSet::Base => "Base Game".to_string(),
             CardSet::SenseiPath => "Sensei's Path".to_string(),
             CardSet::PromotionalPack => "Promotional Cards".to_string(),
+            CardSet::DualCards => "Dual Move Cards".to_string(),
         }
     }
 }
@@ -246,16 +260,19 @@ pub struct CardDescription {
     pub card: Card,
     pub moves: Vec<Point>,
     pub direction: CardDirection,
+    pub movetype: CardType,
 }
 
 impl From<Card> for CardDescription {
     fn from(card: Card) -> Self {
         let moves = card.moves();
         let direction = card.direction();
+        let movetype = card.movetype();
         CardDescription {
             card,
             moves,
             direction,
+            movetype,
         }
     }
 }
