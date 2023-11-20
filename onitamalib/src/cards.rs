@@ -227,7 +227,7 @@ impl Card {
             Card::Mejika => vec![      
                 //Student
                 Point { x: -2, y: -1 }, 
-                Point { x: -2, y: -1 },
+                Point { x: 2, y: -1 },
                 //Master
                 Point { x: 0, y: -1},                
             ],
