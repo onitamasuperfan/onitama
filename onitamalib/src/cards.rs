@@ -446,6 +446,9 @@ impl CardSet {
                 Card::Nessie,
             ],
             CardSet::FirstEdition => vec![
+                Card::Tora, //1st Edition "Tiger"
+                Card::Inoshishi, //1st Edition "Boar"
+                Card::Uma, //1st Edition "Horse"
                 Card::Boar,
                 Card::Crab,
                 Card::Elephant,
@@ -459,9 +462,6 @@ impl CardSet {
                 //Card::Mejika,
                 //Card::Okija,
                 //Card::Kame, //1st Edition "Turtle"
-                Card::Tora, //1st Edition "Tiger"
-                Card::Inoshishi, //1st Edition "Boar"
-                Card::Uma, //1st Edition "Horse"
             ],
         }
     }
