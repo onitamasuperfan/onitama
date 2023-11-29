@@ -222,6 +222,18 @@ impl Card {
                 Point { x: -1, y: 1 },
                 Point { x: 1, y: 1 },
             ],
+            Card::Tora => vec![
+                Point { x: 0, y: -2},
+            ],
+            Card::Inoshishi => vec![
+                Point { x: 0, y: -1},
+                Point { x: 0, y: 1},
+            ],
+            Card::Uma => vec![
+                Point { x: -1, y: -1},
+                Point { x: 0, y: -1},
+                Point { x: 1, y: -1},
+            ],
         }
     }
     pub fn direction(&self) -> CardDirection {
@@ -270,6 +282,10 @@ impl Card {
             Card::Cat => CardDirection::Right,
             Card::Serow => CardDirection::Left,
             Card::Nessie => CardDirection::Balanced,
+            // First Edition Cards
+            Card::Tora => CardDirection::Balanced,
+            Card::Inoshishi => CardDirection::Balanced,
+            Card::Uma => CardDirection::Balanced,          
         }
     }
     pub fn index(&self) -> u32 {
@@ -317,6 +333,10 @@ impl Card {
             Card::Cat => 38,
             Card::Serow => 39,
             Card::Nessie => 40,
+            // First Edition Cards
+            Card::Tora => 41,
+            Card::Inoshishi => 42,
+            Card::Uma => 43,
         }
     }
 }
@@ -367,6 +387,9 @@ impl From<u32> for Card {
             38 => Card::Cat,
             39 => Card::Serow,
             40 => Card::Nessie,
+            41 => Card::Tora,
+            42 => Card::Inoshishi,
+            43 => Card::Uma,
             _ => panic!("invalid index for card"),
         }
     }
@@ -422,7 +445,24 @@ impl CardSet {
                 Card::Cat, 
                 Card::Nessie,
             ],
-            
+            CardSet::FirstEdition => vec![
+                Card::Boar,
+                Card::Crab,
+                Card::Elephant,
+                Card::Monkey,
+                Card::Crane,
+                Card::Mantis,
+                Card::Dog,
+                Card::Fox,
+                Card::Rooster,
+                //Unimplemented Dual Move Cards
+                //Card::Mejika,
+                //Card::Okija,
+                //Card::Kame, //1st Edition "Turtle"
+                Card::Tora, //1st Edition "Tiger"
+                Card::Inoshishi, //1st Edition "Boar"
+                Card::Uma, //1st Edition "Horse"
+            ],
         }
     }
 }
